@@ -342,45 +342,46 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
       <div class="project-grid">
         <!-- NEW: Chronos project (first card) -->
         <div class="project-card reveal" data-anim="slide-right">
-          <h3>Chronos — AI Voice Assistant &amp; Operating System for Hands-Free Computing</h3>
-          <p>Offline, cross-platform AI OS that executes multi-step, natural-language commands entirely on-device—private, fast, and portable.</p>
-
+          <h3>Voix — AI Voice Copilot for Windows (CalHacks 12.0)</h3>
+          <p>Local-first voice copilot that executes multi-step, natural-language commands to control apps, automate workflows, and generate documents in real time.</p>
+        
           <!-- Tech tags: visible right before Read more / Read less -->
           <p class="tech-tags">
             <span class="tag">Python</span>
-            <span class="tag">C++</span>
-            <span class="tag">Whisper.cpp</span>
-            <span class="tag">CTranslate2</span>
-            <span class="tag">SoundDevice</span>
+            <span class="tag">Faster-Whisper</span>
+            <span class="tag">Silero-VAD</span>
+            <span class="tag">Groq</span>
+            <span class="tag">Claude</span>
+            <span class="tag">asyncio</span>
+            <span class="tag">COM Automation</span>
             <span class="tag">PyAutoGUI</span>
-            <span class="tag">Send2Trash</span>
+            <span class="tag">FFmpeg</span>
+            <span class="tag">SoundDevice</span>
             <span class="tag">PyInstaller</span>
-            <span class="tag">Mistral-7B (GGUF)</span>
-            <span class="tag">Whisper (Base/Small)</span>
           </p>
-
+        
           <details class="collapse">
-            <summary class="read-more" aria-label="Toggle Chronos details"></summary>
+            <summary class="read-more" aria-label="Toggle Voix details"></summary>
             <div class="collapse-inner">
               <div class="subhead">Overview</div>
-              <p>Chronos redefines human–computer interaction through voice. Unlike Siri/Alexa, it understands context and can chain multi-line instructions autonomously without internet.</p>
-
+              <p>Voix is a voice-first OS copilot that listens, reasons, and executes. Unlike Siri/Alexa, it can chain multi-step workflows end-to-end—opening apps, generating content, and coordinating system actions with low latency and strong privacy.</p>
+        
               <div class="subhead">Core Features</div>
               <ul>
-                <li><b>🎙️ Real-Time Speech Recognition:</b> Whisper.cpp transcribes locally with near-zero latency.</li>
-                <li><b>🧩 Reasoning &amp; Intent Parsing:</b> Local Mistral GGUF LLM interprets complex tasks like “Open VS Code, create a Python file, write a calculator script.”</li>
-                <li><b>⚙️ Autonomous Multi-Command Execution:</b> Opens/saves/closes apps, manages files, automates web actions via Python automation modules.</li>
-                <li><b>🎥 Meetings &amp; Transcription Assistant:</b> Records audio, generates transcripts with Whisper.cpp, and supports summarize/highlight/mutate workflows.</li>
-                <li><b>💻 Cross-Platform:</b> Windows, macOS, Linux—packaged as a portable executable using PyInstaller; no external deps.</li>
-                <li><b>🔒 Completely Offline:</b> All compute and data stay local for privacy and security.</li>
+                <li><b>🎙️ Real-Time STT:</b> On-device Faster-Whisper + Silero-VAD for low-latency transcription and smart endpointing.</li>
+                <li><b>🧠 Reasoning &amp; Planning:</b> Groq + Claude for intent parsing and multi-step task plans (e.g., “Open Word, write a 120-word essay on AI safety, save to Desktop”).</li>
+                <li><b>⚙️ Desktop Automation:</b> Python COM automation &amp; PyAutoGUI to control Word/Excel/Chrome, files, and system utilities.</li>
+                <li><b>📋 Meeting Intelligence:</b> Local recording, transcription, and action-item extraction; privacy-preserving by default.</li>
+                <li><b>🌐 Web Intelligence:</b> Optional API lookups (weather, time zones, etc.) without context-switching.</li>
+                <li><b>🔒 Local-First:</b> Runs offline or with minimal APIs for speed and data security.</li>
               </ul>
-
+        
               <div class="subhead">Vision</div>
-              <p>Growing into a modular AI desktop OS that learns habits, manages workflows, and turns natural language into reliable system control.</p>
-
+              <p>Expand to macOS/Linux, add user-trainable command memory and a plugin SDK, and evolve into the default voice control layer for desktop computing.</p>
+        
               <!-- Tags move here when open (just before Read less) -->
               <div class="tags-slot"></div>
-
+        
               <div class="collapse-actions">
                 <button type="button" class="chip read-less">Read less</button>
               </div>
@@ -806,3 +807,4 @@ From: ${name} <${fromEmail}>`;
   </script>
 </body>
 </html>
+
