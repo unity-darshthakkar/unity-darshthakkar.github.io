@@ -42,7 +42,7 @@ body{font-family:"Inter","Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background:
 /* ====== reveal ====== */
 .reveal{opacity:0;transform:translateY(24px);transition:transform var(--dur,700ms) cubic-bezier(.2,.7,.3,1),opacity var(--dur,700ms) ease;transition-delay:var(--delay,0ms);will-change:transform,opacity}
 .reveal.in{opacity:1;transform:none}
-[data-anim="fade-up"]{transform:translateY(24px)}[data-anim="fade-down"]{transform:translateY(-24px)}[data-anim="slide-left"]{transform:translateX(-32px)}[data-anim="slide-right"]{transform:translateX(32px)}[data-anim="scale-in"]{transform:scale(.92)}
+[data-anim="fade-up"]{transform:translateY(24px)}[data-anim="fade-down"]{transform:translateY(-24px)}[data-anim="slide-left"]{transform:translateX(32px)}[data-anim="slide-right"]{transform:translateX(-32px)}[data-anim="scale-in"]{transform:scale(.92)}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
 
 /* ====== text effects ====== */
@@ -128,7 +128,34 @@ radial-gradient(380px 180px at 15% 70%,rgba(16,185,129,.12),transparent 60%)}
 .project-card h3{color:#0f172a;margin-bottom:.65rem;font-size:1.18rem}
 .project-card p{color:#5b6472;margin:.5rem 0 0;line-height:1.6}
 
-/* ====== tighten top spacing inside tiles/cards (less gap above first text) ====== */
+/* ====== collapse / read more for projects ====== */
+details.collapse{margin-top:.5rem;text-align:left;display:flex;justify-content:center}
+details.collapse summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-weight:700;color:#1f2937;transition:.2s}
+details.collapse summary:hover{border-color:var(--hover-border);color:var(--primary);transform:translateY(-1px)}
+/* Hide the top summary when open (show bottom 'Read less' instead) */
+details.collapse[open] summary{display:none}
+details.collapse .collapse-inner{padding:.9rem 0 0;max-width:900px;margin:0 auto}
+details.collapse .subhead{color:#0ea5e9;font-weight:800;margin:.6rem 0 .3rem}
+details.collapse ul{padding-left:1.1rem;color:#5b6472}
+details.collapse li{margin:.25rem 0}
+summary.read-more::after{content:"Read more";color:var(--primary)}
+
+/* Tags + actions (centered) */
+.tags-slot{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.6rem}
+.collapse-actions{display:flex;justify-content:center;margin-top:.6rem}
+button.chip{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-weight:700;color:#1f2937;cursor:pointer;transition:.2s}
+button.chip:hover{border-color:var(--hover-border);color:var(--primary);transform:translateY(-1px)}
+
+/* Tech tags (shown only before Read more / Read less) */
+.project-card .tech-tags{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.35rem}
+
+/* Expanded project spans full row */
+.project-card.open-wide{ grid-column:1 / -1; }
+@supports(selector(:has(*))){
+  .project-card:has(details[open]){ grid-column:1 / -1; }
+}
+
+/* ====== spacing tighten ====== */
 .card{padding:1.6rem 2rem 2rem}
 .project-card{padding:1.1rem 1.4rem 1.4rem}
 .exp-item{padding:1rem 1.4rem 1.25rem}
@@ -160,7 +187,7 @@ radial-gradient(380px 180px at 15% 70%,rgba(16,185,129,.12),transparent 60%)}
 .contact-info ul{list-style:none;text-align:left;color:#475569}
 .contact-info li{display:flex;align-items:center;gap:.6rem;padding:.6rem .2rem;border-bottom:1px dashed var(--border)}
 .contact-info a{color:#0f172a;text-decoration:none}
-.contact-info a:hover{color:var(--primary);text-decoration:underline}
+.contact-info a:hover{color:#primary;text-decoration:underline}
 .contact-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
 
 /* Form styles */
@@ -313,22 +340,71 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
 
       <h3 class="subsection-title reveal" data-anim="fade-up" style="margin-top:1.6rem">Projects</h3>
       <div class="project-grid">
+        <!-- NEW: Chronos project (first card) -->
         <div class="project-card reveal" data-anim="slide-right">
+          <h3>Chronos — AI Voice Assistant &amp; Operating System for Hands-Free Computing</h3>
+          <p>Offline, cross-platform AI OS that executes multi-step, natural-language commands entirely on-device—private, fast, and portable.</p>
+
+          <!-- Tech tags: visible right before Read more / Read less -->
+          <p class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">C++</span>
+            <span class="tag">Whisper.cpp</span>
+            <span class="tag">CTranslate2</span>
+            <span class="tag">SoundDevice</span>
+            <span class="tag">PyAutoGUI</span>
+            <span class="tag">Send2Trash</span>
+            <span class="tag">PyInstaller</span>
+            <span class="tag">Mistral-7B (GGUF)</span>
+            <span class="tag">Whisper (Base/Small)</span>
+          </p>
+
+          <details class="collapse">
+            <summary class="read-more" aria-label="Toggle Chronos details"></summary>
+            <div class="collapse-inner">
+              <div class="subhead">Overview</div>
+              <p>Chronos redefines human–computer interaction through voice. Unlike Siri/Alexa, it understands context and can chain multi-line instructions autonomously without internet.</p>
+
+              <div class="subhead">Core Features</div>
+              <ul>
+                <li><b>🎙️ Real-Time Speech Recognition:</b> Whisper.cpp transcribes locally with near-zero latency.</li>
+                <li><b>🧩 Reasoning &amp; Intent Parsing:</b> Local Mistral GGUF LLM interprets complex tasks like “Open VS Code, create a Python file, write a calculator script.”</li>
+                <li><b>⚙️ Autonomous Multi-Command Execution:</b> Opens/saves/closes apps, manages files, automates web actions via Python automation modules.</li>
+                <li><b>🎥 Meetings &amp; Transcription Assistant:</b> Records audio, generates transcripts with Whisper.cpp, and supports summarize/highlight/mutate workflows.</li>
+                <li><b>💻 Cross-Platform:</b> Windows, macOS, Linux—packaged as a portable executable using PyInstaller; no external deps.</li>
+                <li><b>🔒 Completely Offline:</b> All compute and data stay local for privacy and security.</li>
+              </ul>
+
+              <div class="subhead">Vision</div>
+              <p>Growing into a modular AI desktop OS that learns habits, manages workflows, and turns natural language into reliable system control.</p>
+
+              <!-- Tags move here when open (just before Read less) -->
+              <div class="tags-slot"></div>
+
+              <div class="collapse-actions">
+                <button type="button" class="chip read-less">Read less</button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Existing projects -->
+        <div class="project-card reveal" data-anim="slide-left">
           <h3>YouTube Gesture Remote</h3>
           <p>Real-time, fully offline, webcam-based gesture controller for YouTube: play/pause, mute/unmute, fullscreen, volume up/down, next/previous—via native keyboard events with HUD. All on-device.</p>
           <p><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">MediaPipe Hands</span><span class="tag">pynput</span><span class="tag">Computer Vision</span></p>
         </div>
-        <div class="project-card reveal" data-anim="slide-left">
+        <div class="project-card reveal" data-anim="slide-right">
           <h3>Reinforcement Learning Agent (Q-Learning &amp; SARSA)</h3>
           <p>Q-Learning + ε-greedy and SARSA with decaying ε on CliffWalking-v0. Visualized policies, evaluated returns; near-optimal navigation.</p>
           <p><span class="tag">Python</span><span class="tag">Gymnasium</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">RL</span></p>
         </div>
-        <div class="project-card reveal" data-anim="slide-right">
+        <div class="project-card reveal" data-anim="slide-left">
           <h3>Predicting Climate Trends with Linear Regression</h3>
           <p>Analyzed Lake Mendota frozen days (1855–2023); closed-form & gradient-descent linear regression; forecasts with trend plots and loss curves.</p>
           <p><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Time Series</span></p>
         </div>
-        <div class="project-card reveal" data-anim="slide-left">
+        <div class="project-card reveal" data-anim="slide-right">
           <h3>LeNet-5 CNN for Image Classification</h3>
           <p>Re-created LeNet-5 in PyTorch, trained on CIFAR-100; counted parameters; tuned hyperparameters; compared custom CNNs.</p>
           <p><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">TorchVision</span><span class="tag">CNN</span><span class="tag">TQDM</span></p>
@@ -436,7 +512,6 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
       </div>
 
       <div class="contact-grid">
-        <!-- LEFT: info list + quick actions -->
         <div class="card contact-info reveal" data-anim="slide-right">
           <h3 style="color:#0ea5e9;margin-bottom:1rem">Contact Info</h3>
           <ul>
@@ -450,11 +525,10 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
           <div class="contact-actions"> 
             <button type="button" class="cta-button email-btn">Email</button>
             <a class="cta-button linkedin-btn" href="https://www.linkedin.com/in/darshthakkar99/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="darsh-thakkar-resume.pdf?v=2025-09-03" target="_blank" class="cta-button">Download Resume (PDF)</a>
+            <a href="darsh-thakkar-resume.pdf?v=2025-09-03" target="_blank" class="cta-button">View Resume (PDF)</a>
           </div>
         </div>
 
-        <!-- RIGHT: form (opens Gmail compose in a new tab with To/Subject/Body prefilled) -->
         <div class="card contact-form reveal" data-anim="slide-left">
           <h3 style="color:#0ea5e9;margin-bottom:1rem">Send a Message</h3>
           <form id="contactForm">
@@ -532,9 +606,7 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
       {sel:'#skills .section-title',anim:'fade-up'},
       {sel:'#skills .skills-category',anim:'fade-up',stagger:90},
       { sel:'#contact .section-title', anim:'fade-up' },
-      // only stagger the top list items (Email/Phone/Location)
       { sel:'#contact .contact-info > ul > li', anim:'fade-up', stagger:80 },
-      // animate the whole button group together (no per-button stagger)
       { sel:'#contact .contact-actions', anim:'fade-up' },
       { sel:'#contact .contact-form', anim:'slide-left' }
     ];
@@ -593,6 +665,61 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
   },{rootMargin:'-40% 0px -55% 0px'});
   sections.forEach(s=>spyObserver.observe(s));
 
+  // ===== Full-row expansion + tags movement for project details =====
+  function initProjectDetailsBehavior(){
+    const detailEls = Array.from(document.querySelectorAll('.project-card details.collapse'));
+
+    function closeAllExcept(except){
+      detailEls.forEach(d => {
+        if(d !== except && d.open){
+          d.open = false;
+          d.closest('.project-card')?.classList.remove('open-wide');
+        }
+      });
+    }
+
+    detailEls.forEach(d => {
+      const card = d.closest('.project-card');
+      const tags = card?.querySelector('.tech-tags');
+      const originalParent = tags?.parentNode || null;
+      const originalNext = tags?.nextSibling || null;
+      const slot = d.querySelector('.tags-slot');
+      const readLessBtn = d.querySelector('button.read-less');
+
+      d.addEventListener('toggle', () => {
+        if(!card) return;
+
+        if(d.open){
+          closeAllExcept(d);
+          card.classList.add('open-wide');
+
+          // Move tags to bottom slot so they appear just before "Read less"
+          if(tags && slot){ slot.appendChild(tags); }
+
+          // Scroll expanded card under the fixed header
+          const headerOffset = 86;
+          const y = card.getBoundingClientRect().top + window.pageYOffset - headerOffset - 8;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }else{
+          card.classList.remove('open-wide');
+
+          // Move tags back above the summary ("Read more")
+          if(tags && originalParent){
+            if(originalNext){ originalParent.insertBefore(tags, originalNext); }
+            else{ originalParent.appendChild(tags); }
+          }
+        }
+      });
+
+      // Bottom "Read less" button closes the details
+      readLessBtn?.addEventListener('click', () => { d.open = false; });
+
+      // Accessibility
+      const summary = d.querySelector('summary.read-more');
+      if(summary && !summary.hasAttribute('role')) summary.setAttribute('role', 'button');
+    });
+  }
+
   // init
   function init(){
     document.getElementById('year').textContent=new Date().getFullYear();
@@ -607,6 +734,9 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
       });
     });
     updateProgressBar(); updateNavbar(); updateParallax();
+
+    // Enable full-row expansion and correct Read less placement
+    initProjectDetailsBehavior();
   }
   window.addEventListener('load',init);
 
@@ -651,6 +781,7 @@ footer{padding:3rem 2rem;color:#6b7280;border-top:1px solid var(--border);backgr
         e.preventDefault();
 
         const name = document.getElementById('name').value.trim();
+        the
         const fromEmail = document.getElementById('fromEmail').value.trim();
         const subject = document.getElementById('subject').value.trim();
         const message = document.getElementById('message').value.trim();
