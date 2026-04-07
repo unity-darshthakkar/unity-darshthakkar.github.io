@@ -428,19 +428,57 @@ footer a{color:var(--cyan);text-decoration:none}
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  body{cursor:auto}
+  #cursor{display:none}
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem}
   .hero-visual{justify-content:center;order:-1}
   .hero-card-3d{width:280px;height:360px}
-  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .about-grid,.contact-grid,.skills-grid{grid-template-columns:1fr}
   .contact-info{padding-right:0}
   .project-card.featured{grid-column:span 1}
   .form-row{grid-template-columns:1fr}
-  nav{padding:1rem 1.5rem}
+  .cert-card{flex-direction:column;align-items:flex-start}
+  nav{padding:1rem 1.25rem}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
-  section{padding:100px 1.5rem}
+  section{padding:100px 1.25rem 80px}
 }
-@media(max-width:600px){.hero-name{font-size:2.8rem}.hero-stats{gap:1.8rem}}
+
+@media(max-width:600px){
+  body{cursor:auto}
+  #cursor{display:none}
+  nav{padding:0.9rem 1rem}
+  section{padding:92px 1rem 72px}
+  .container{max-width:100%}
+  .hero-inner{gap:1.75rem}
+  .hero-name{font-size:2.45rem;line-height:0.98}
+  .hero-role{font-size:0.92rem;margin-bottom:1.2rem}
+  .hero-desc{font-size:0.98rem;line-height:1.7;margin-bottom:1.6rem}
+  .hero-btns{flex-direction:column;gap:0.75rem;margin-bottom:1.75rem}
+  .btn-primary,.btn-ghost,.social-btn,.nav-cta{width:100%;justify-content:center}
+  .hero-stats{flex-wrap:wrap;gap:1rem}
+  .stat-item{flex:1 1 calc(50% - 0.5rem)}
+  .stat-num{font-size:1.7rem}
+  .hero-card-3d{width:min(82vw,300px);height:auto;aspect-ratio:360 / 460}
+  .s-title{font-size:2rem}
+  .s-sub{font-size:0.96rem;line-height:1.7}
+  .s-section-label{margin:2rem 0 1rem}
+  .info-card,.exp-card,.project-card,.skill-group,.contact-form-wrap{padding:1.25rem}
+  .cert-card{padding:1.3rem;gap:1rem}
+  .project-grid,.skills-grid,.about-grid,.contact-grid{gap:1rem}
+  .exp-entry{grid-template-columns:42px 1fr;gap:0.9rem}
+  .exp-header{gap:0.65rem}
+  .exp-period{white-space:normal}
+  .social-row{gap:0.65rem}
+  .social-btn{padding:0.8rem 1rem}
+  .contact-item{align-items:flex-start}
+  .mobile-drawer a{font-size:1.55rem}
+}
+
+@media (hover:none), (pointer:coarse){
+  body{cursor:auto}
+  #cursor{display:none}
+}
 </style>
 </head>
 <body>
@@ -479,7 +517,7 @@ footer a{color:var(--cyan);text-decoration:none}
   <div class="container">
     <div class="hero-inner">
       <div class="hero-copy">
-        <div class="hero-tag reveal">Open to Internships · Projects</div>
+        <div class="hero-tag reveal">Open to Internships · Projects · Tech Talks</div>
         <h1 class="hero-name reveal delay-1">Darsh<span class="accent">Thakkar.</span></h1>
         <p class="hero-role reveal delay-2">CS &amp; Data Science @ <span>UW–Madison</span></p>
         <p class="hero-desc reveal delay-3">Building at the intersection of AI, computer vision, and robotics. Whether it's an internship, a cool side project, or just nerding out about the latest in LLMs and autonomous systems — I'm always down to connect.</p>
@@ -499,7 +537,7 @@ footer a{color:var(--cyan);text-decoration:none}
           <div class="hc-overlay"></div>
           <div class="hc-grid-lines"></div>
           <div class="hc-badge">Junior ✦ 2027</div>
-          <div class="hc-label"><h3>Darsh Thakkar</h3><p>AI · Software · Robotics</p></div>
+          <div class="hc-label"><h3>Darsh Thakkar</h3><p>AI · CV · Robotics · Software</p></div>
         </div>
       </div>
     </div>
@@ -899,9 +937,18 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
 /* ── MOBILE MENU ── */
 const hamburger=document.getElementById('hamburger'),mobileDrawer=document.getElementById('mobileDrawer'),mobileClose=document.getElementById('mobileClose');
-hamburger.addEventListener('click',()=>mobileDrawer.classList.add('open'));
-mobileClose.addEventListener('click',()=>mobileDrawer.classList.remove('open'));
-mobileDrawer.querySelectorAll('a[data-close]').forEach(a=>a.addEventListener('click',()=>mobileDrawer.classList.remove('open')));
+
+function toggleMobileDrawer(){
+  mobileDrawer.classList.toggle('open');
+}
+
+function closeMobileDrawer(){
+  mobileDrawer.classList.remove('open');
+}
+
+hamburger.addEventListener('click',toggleMobileDrawer);
+mobileClose.addEventListener('click',closeMobileDrawer);
+mobileDrawer.querySelectorAll('a[data-close]').forEach(a=>a.addEventListener('click',closeMobileDrawer));
 
 /* ── CONTACT FORM ── */
 (function(){
