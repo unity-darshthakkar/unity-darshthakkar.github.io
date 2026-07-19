@@ -73,7 +73,7 @@ export default function Hero() {
               <div className="relative z-10 order-1 px-8 pt-10 md:order-none md:p-0">
                 <p className="mono-label mb-5 flex items-center gap-2 text-cyan-300">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-300 animate-pulse-dot" />
-                  {profile.location} · Available for 2026 internships
+                  {profile.location} · Open to full-time roles · 2027
                 </p>
 
                 <h1 className="font-display text-5xl font-bold leading-[1.02] tracking-tightest text-transparent sm:text-6xl md:text-7xl">

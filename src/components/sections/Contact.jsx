@@ -27,7 +27,7 @@ export default function Contact() {
               index="05"
               label="Contact"
               title="Let's build something."
-              kicker="I'm looking for 2026 internships in ML, AI systems, and full-stack. My inbox is always open."
+              kicker="I'm a final-year student graduating May 2027, seeking full-time roles in ML, AI systems, and full-stack. My inbox is always open."
             />
 
             <div className="flex flex-wrap gap-3">
