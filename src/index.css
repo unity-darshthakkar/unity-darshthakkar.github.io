@@ -1,0 +1,456 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/*  Theme tokens — RGB triplets so Tailwind's <alpha-value> works.     */
+/* ------------------------------------------------------------------ */
+:root {
+  --bg: 5 6 10;
+  --surface: 12 14 22;
+  --elevated: 18 21 32;
+  --fg: 237 237 242;
+  --muted: 138 143 152;
+  --line: 42 46 60;
+  --accent: 34 211 238;
+  --accent2: 124 58 237;
+  color-scheme: dark;
+}
+
+html:not(.dark) {
+  --bg: 249 250 252;
+  --surface: 255 255 255;
+  --elevated: 244 245 248;
+  --fg: 12 14 20;
+  --muted: 86 92 106;
+  --line: 222 226 234;
+  --accent: 14 116 144;
+  --accent2: 109 40 217;
+  color-scheme: light;
+}
+
+/* --------------------------------------------------------------- */
+/*  Per-section accent theming.                                      */
+/*  A section tagged data-accent="green" overrides --accent /        */
+/*  --accent2 / --c / --c2 for its whole subtree, so EVERY accent-   */
+/*  driven element (text, gradients, borders, glows, backgrounds)    */
+/*  adopts that colour. Values below are tuned for dark mode; the    */
+/*  html:not(.dark) block darkens them for light mode contrast.      */
+[data-accent='green'] {
+  --accent: 52 211 153;
+  --accent2: 16 185 129;
+  --c: 52 211 153;
+  --c2: 16 185 129;
+}
+[data-accent='blue'] {
+  --accent: 56 189 248;
+  --accent2: 59 130 246;
+  --c: 56 189 248;
+  --c2: 37 99 235;
+}
+[data-accent='grey'] {
+  --accent: 148 163 184;
+  --accent2: 100 116 139;
+  --c: 148 163 184;
+  --c2: 100 116 139;
+}
+[data-accent='white'] {
+  --accent: 226 232 240;
+  --accent2: 148 163 184;
+  --c: 226 232 240;
+  --c2: 148 163 184;
+}
+[data-accent='teal'] {
+  --accent: 45 212 191;
+  --accent2: 16 185 129;
+  --c: 45 212 191;
+  --c2: 16 185 129;
+}
+
+html:not(.dark) [data-accent='green'] {
+  --accent: 5 150 105;
+  --accent2: 4 120 87;
+}
+html:not(.dark) [data-accent='blue'] {
+  --accent: 2 132 199;
+  --accent2: 37 99 235;
+}
+html:not(.dark) [data-accent='grey'] {
+  --accent: 71 85 105;
+  --accent2: 100 116 139;
+  --c: 100 116 139;
+}
+html:not(.dark) [data-accent='white'] {
+  --accent: 71 85 105;
+  --accent2: 100 116 139;
+  --c: 148 163 184;
+}
+html:not(.dark) [data-accent='teal'] {
+  --accent: 13 148 136;
+  --accent2: 5 150 105;
+}
+
+* {
+  border-color: rgb(var(--line));
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.is-loading {
+  overflow: hidden;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.28);
+  color: rgb(var(--fg));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--bg));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line));
+  border-radius: 99px;
+  border: 2px solid rgb(var(--bg));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--muted) / 0.6);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Components                                                          */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-8;
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, rgb(var(--accent)), rgb(var(--accent2)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .mono-label {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-accent;
+  }
+
+  /* translucent card WITHOUT a heavy backdrop-blur (perf) */
+  .glass-card {
+    @apply rounded-2xl border border-line/70;
+    background: rgb(var(--surface) / 0.7);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           text-sm font-medium transition-all duration-300 cursor-pointer
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent;
+  }
+
+  .btn-primary {
+    @apply btn text-black;
+    background: linear-gradient(100deg, rgb(var(--accent)), rgb(var(--accent2)));
+  }
+  .btn-primary:hover {
+    box-shadow: 0 8px 32px -8px rgb(var(--accent) / 0.6);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    @apply btn border border-line text-fg hover:border-accent/60;
+    background: rgb(var(--surface) / 0.5);
+  }
+
+  .section {
+    @apply relative isolate scroll-mt-24 py-28;
+  }
+}
+
+/* --------------------------------------------------------------- */
+/*  Smart mouse-tracking border glow on cards.                       */
+/*  A masked 1px ring whose brightness follows the cursor (--mx/--my */
+/*  set by a global pointer listener). Colour = the section accent.  */
+/* --------------------------------------------------------------- */
+.glass-card,
+.glow-border {
+  position: relative;
+}
+.glass-card::before,
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    220px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(var(--accent) / 0.95),
+    rgb(var(--accent) / 0.25) 35%,
+    transparent 65%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.glass-card:hover::before,
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* loader progress sheen */
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.25), transparent);
+  animation: shimmer 1.6s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* GSAP reveal targets start hidden */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Spline Suspense fallback spinner */
+.loader {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgb(255 255 255 / 0.15);
+  border-top-color: rgb(var(--accent));
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* GlowCard (spotlight-card): cursor-following radial glow */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgb(var(--line) / 0.8);
+  background: rgb(var(--surface) / 0.7);
+}
+.glow-card__spot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    340px circle at var(--x, 50%) var(--y, 50%),
+    rgb(var(--glow) / 0.16),
+    transparent 60%
+  );
+}
+.glow-card__border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  padding: 1px;
+  background: radial-gradient(
+    300px circle at var(--x, 50%) var(--y, 50%),
+    rgb(var(--glow) / 0.55),
+    transparent 55%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.glow-card:hover .glow-card__spot,
+.glow-card:hover .glow-card__border {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Decorative background layers (GPU-friendly transforms)             */
+/* ------------------------------------------------------------------ */
+.sec-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* fine grid used by the global background */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgb(var(--line) / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--line) / 0.5) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black, transparent 78%);
+  mask-image: radial-gradient(ellipse at 50% 0%, black, transparent 78%);
+  opacity: 0.35;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0.5;
+  /* radial-gradient fills are already soft — no costly blur filter needed */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* dotted field (About) — color via --c */
+.dots {
+  position: absolute;
+  inset: -30%;
+  background-image: radial-gradient(rgb(var(--c, var(--accent)) / 0.55) 1.2px, transparent 1.6px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, black, transparent 72%);
+  mask-image: radial-gradient(circle at 50% 45%, black, transparent 72%);
+  opacity: 0.7;
+  animation: driftY 26s linear infinite;
+}
+
+/* diagonal light beams (Experience) — color via --c */
+.beam {
+  position: absolute;
+  top: -30%;
+  height: 160%;
+  width: 40%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgb(var(--c, var(--accent)) / 0.18),
+    transparent
+  );
+  transform: rotate(14deg);
+  animation: beamSweep 14s ease-in-out infinite;
+}
+
+/* perspective grid (Skills) — color via --c */
+.persp-grid {
+  position: absolute;
+  left: -25%;
+  right: -25%;
+  bottom: -10%;
+  height: 90%;
+  background-image: linear-gradient(rgb(var(--c, var(--accent)) / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--c, var(--accent)) / 0.28) 1px, transparent 1px);
+  background-size: 46px 46px;
+  transform: perspective(420px) rotateX(64deg);
+  transform-origin: bottom;
+  -webkit-mask-image: linear-gradient(to top, black, transparent 80%);
+  mask-image: linear-gradient(to top, black, transparent 80%);
+  animation: gridMove 6s linear infinite;
+  will-change: transform;
+  opacity: 0.75;
+}
+
+
+@keyframes driftY {
+  to {
+    transform: translateY(28px);
+  }
+}
+@keyframes beamSweep {
+  0%,
+  100% {
+    transform: translateX(-10%) rotate(14deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(40%) rotate(14deg);
+    opacity: 1;
+  }
+}
+@keyframes gridMove {
+  from {
+    transform: perspective(420px) rotateX(64deg) translateY(0);
+  }
+  to {
+    transform: perspective(420px) rotateX(64deg) translateY(46px);
+  }
+}
+@keyframes auroraSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(3%, -6%);
+  }
+}
+@keyframes floatOrb2 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-4%, 5%);
+  }
+}
+
+/* marquee for skills tech strip */
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .dots,
+  .beam,
+  .persp-grid,
+  .aurora,
+  .orb,
+  .marquee-track,
+  .animate-bounce,
+  .animate-pulse-dot {
+    animation: none !important;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
