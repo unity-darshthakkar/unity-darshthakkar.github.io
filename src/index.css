@@ -237,8 +237,8 @@ body.has-custom-cursor .cursor-ring {
   display: block;
 }
 .cursor-dot {
-  width: 7px;
-  height: 7px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: rgb(var(--accent));
   transform: translate(-50%, -50%);
@@ -253,7 +253,6 @@ body.has-custom-cursor .cursor-ring {
     border-color 0.2s ease, background-color 0.2s ease, opacity 0.25s ease;
 }
 .cursor-ring.cursor-hover {
-  transform: translate(-50%, -50%) scale(1.6);
   border-color: rgb(var(--accent) / 0.9);
   background: rgb(var(--accent) / 0.1);
 }
