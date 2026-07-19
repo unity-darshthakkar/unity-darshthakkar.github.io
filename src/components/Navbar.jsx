@@ -57,15 +57,13 @@ export default function Navbar() {
           <span className="hidden sm:block">Darsh</span>
         </button>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-0.5 lg:flex">
           {navLinks.map((l) => (
             <button
               key={l.id}
               onClick={() => go(l.id)}
-              className={`rounded-full px-4 py-2 text-sm transition-colors cursor-pointer ${
-                active === l.id
-                  ? 'text-fg'
-                  : 'text-muted hover:text-fg'
+              className={`rounded-full px-3 py-2 text-sm transition-colors cursor-pointer ${
+                active === l.id ? 'text-fg' : 'text-muted hover:text-fg'
               }`}
             >
               {l.label}
@@ -86,7 +84,7 @@ export default function Navbar() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
-            className="grid h-11 w-11 place-items-center rounded-full border border-line text-fg md:hidden cursor-pointer"
+            className="grid h-11 w-11 place-items-center rounded-full border border-line text-fg lg:hidden cursor-pointer"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -95,7 +93,7 @@ export default function Navbar() {
 
       {/* mobile panel */}
       {open && (
-        <div className="border-t border-line bg-bg/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-line bg-bg/95 backdrop-blur-xl lg:hidden">
           <div className="container-page flex flex-col py-4">
             {navLinks.map((l) => (
               <button

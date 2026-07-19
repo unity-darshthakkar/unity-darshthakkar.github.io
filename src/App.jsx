@@ -3,11 +3,14 @@ import Preloader from './components/Preloader'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Background from './components/Background'
+import Cursor from './components/Cursor'
 import Hero from './components/hero/Hero'
 import About from './components/sections/About'
 import Experience from './components/sections/Experience'
 import Projects from './components/sections/Projects'
 import Skills from './components/sections/Skills'
+import Certifications from './components/sections/Certifications'
+import Involvement from './components/sections/Involvement'
 import Contact from './components/sections/Contact'
 import { useLenis } from './hooks/useLenis'
 import { useScrollReveal } from './hooks/useScrollReveal'
@@ -52,6 +55,7 @@ export default function App() {
   return (
     <>
       <Preloader onDone={handleDone} />
+      <Cursor />
       <Background />
       <Navbar />
       <main className="relative">
@@ -60,6 +64,8 @@ export default function App() {
         <Experience />
         <Projects />
         <Skills />
+        <Certifications />
+        <Involvement />
         <Contact />
       </main>
       <Footer />

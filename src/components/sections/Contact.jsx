@@ -24,7 +24,7 @@ export default function Contact() {
 
           <div className="relative">
             <SectionHeading
-              index="05"
+              index="07"
               label="Contact"
               title="Let's build something."
               kicker="I'm a final-year student graduating May 2027, seeking full-time roles in ML, AI systems, robotics, and full-stack. My inbox is always open."

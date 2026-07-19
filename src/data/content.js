@@ -173,10 +173,40 @@ export const education = {
   detail: 'Expected 2027 · GPA 3.4 · Dean’s List: Fall 2023, Fall 2024',
 }
 
+export const involvement = [
+  {
+    role: 'Founding Father',
+    org: 'Sigma Phi Epsilon (β-WI)',
+    detail: 'Recruitment, Chaplain / Standards',
+    period: 'Oct 2024 — Present',
+  },
+  {
+    role: 'Member',
+    org: 'Wisconsin Robotics',
+    detail: 'Battle-bot CAD (Onshape), Sphero design, custom PCB (KiCAD)',
+    period: 'Sept 2023 — Present',
+  },
+  {
+    role: 'DoE Bronze',
+    org: 'Duke of Edinburgh',
+    detail: 'Skills, physical, adventure & social service',
+    period: 'Jan — Apr 2022',
+  },
+  {
+    role: 'Captain',
+    org: 'Student Council',
+    detail: '',
+    period: 'Aug 2019 — May 2020',
+  },
+]
+
 export const navLinks = [
+  { id: 'hero', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
+  { id: 'certifications', label: 'Certifications' },
+  { id: 'involvement', label: 'Involvement' },
   { id: 'contact', label: 'Contact' },
 ]

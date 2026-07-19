@@ -219,6 +219,53 @@ body.is-loading {
   opacity: 1;
 }
 
+/* --------------------------------------------------------------- */
+/*  Custom cursor (fine pointers only)                              */
+/* --------------------------------------------------------------- */
+.cursor-dot,
+.cursor-ring {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+body.has-custom-cursor .cursor-dot,
+body.has-custom-cursor .cursor-ring {
+  display: block;
+}
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgb(var(--accent));
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgb(var(--accent) / 0.5);
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.2s ease, background-color 0.2s ease, opacity 0.25s ease;
+}
+.cursor-ring.cursor-hover {
+  transform: translate(-50%, -50%) scale(1.6);
+  border-color: rgb(var(--accent) / 0.9);
+  background: rgb(var(--accent) / 0.1);
+}
+.cursor-ring.cursor-down {
+  transform: translate(-50%, -50%) scale(0.85);
+}
+/* hide the native cursor everywhere while the custom one is active */
+body.has-custom-cursor,
+body.has-custom-cursor * {
+  cursor: none !important;
+}
+
 /* loader progress sheen */
 .shimmer::after {
   content: '';
