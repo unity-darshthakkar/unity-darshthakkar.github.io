@@ -183,7 +183,7 @@ export const involvement = [
   {
     role: 'Member',
     org: 'Wisconsin Robotics',
-    detail: 'Battle-bot CAD (Onshape), Sphero design, custom PCB (KiCAD)',
+    detail: 'Battle-bot CAD (Onshape)',
     period: 'Sept 2023 — Present',
   },
   {

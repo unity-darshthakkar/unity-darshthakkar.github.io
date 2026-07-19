@@ -27,13 +27,13 @@ export default function About() {
               controller.
             </p>
 
-            <div className="reveal glass-card p-5" data-reveal="left">
-              <p className="mono-label mb-2">Education</p>
-              <p className="font-display text-lg font-medium text-fg">
+            <div className="reveal glass-card p-6" data-reveal="left">
+              <p className="mono-label mb-3">Education</p>
+              <p className="font-display text-xl font-semibold text-fg">
                 {education.school}
               </p>
-              <p className="text-fg">{education.degree}</p>
-              <p className="mt-1 text-sm text-muted">{education.detail}</p>
+              <p className="mt-1 text-lg text-fg">{education.degree}</p>
+              <p className="mt-2 text-base text-muted">{education.detail}</p>
             </div>
           </div>
 
