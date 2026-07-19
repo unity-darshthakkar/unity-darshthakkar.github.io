@@ -28,8 +28,8 @@ export default function About() {
             </p>
 
             <div className="reveal glass-card p-7" data-reveal="left">
-              <p className="mono-label mb-3 text-sm">Education</p>
-              <p className="font-display text-3xl font-semibold leading-tight text-fg">
+              <p className="mono-label mb-3 text-base">Education</p>
+              <p className="font-display text-[26px] font-semibold leading-tight text-fg">
                 {education.school}
               </p>
               <p className="mt-2 text-2xl text-fg">{education.degree}</p>
