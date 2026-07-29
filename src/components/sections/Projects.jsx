@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Github } from 'lucide-react'
 import SectionHeading from '../SectionHeading'
 import SectionBg from '../SectionBg'
 import { GlowCard } from '@/components/ui/spotlight-card'
@@ -38,7 +38,20 @@ function FeaturedCard({ p, glow }) {
             <h3 className="font-display text-2xl font-semibold text-fg">{p.name}</h3>
             <p className="mt-1 text-sm text-accent">{p.subtitle}</p>
           </div>
-          <span className="font-mono text-xs text-muted">{p.year}</span>
+          <div className="flex items-center gap-3">
+            {p.github && (
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${p.name} GitHub repository`}
+                className="grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent/50 hover:text-fg"
+              >
+                <Github size={16} />
+              </a>
+            )}
+            <span className="font-mono text-xs text-muted">{p.year}</span>
+          </div>
         </div>
 
         <p className="mt-5 leading-relaxed text-muted">{p.blurb}</p>
@@ -71,13 +84,40 @@ function MiniCard({ p }) {
           <h3 className="font-display text-lg font-semibold text-fg">{p.name}</h3>
           <p className="mt-0.5 text-sm text-accent">{p.subtitle}</p>
         </div>
-        <ArrowUpRight
-          size={18}
-          className="text-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-        />
+        {p.github ? (
+          <a
+            href={p.github}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${p.name} GitHub repository`}
+            className="text-muted transition-colors hover:text-accent"
+          >
+            <ArrowUpRight
+              size={18}
+              className="transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+            />
+          </a>
+        ) : (
+          <ArrowUpRight
+            size={18}
+            className="text-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+          />
+        )}
       </div>
       <p className="mt-3 text-sm leading-relaxed text-muted">{p.blurb}</p>
       <TagRow tags={p.tags} />
+
+      {p.github && (
+        <a
+          href={p.github}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 inline-flex items-center gap-2 text-sm text-accent transition-colors hover:text-fg"
+        >
+          <Github size={15} />
+          View repository
+        </a>
+      )}
     </article>
   )
 }

@@ -79,6 +79,37 @@ export const experience = [
 
 export const projects = [
   {
+    name: 'ShadowOps',
+    subtitle: 'AI Deployment Preflight Platform',
+    award: 'IBM July Wildcard Hackathon 2026',
+    year: '2026',
+    blurb:
+      'A full-stack platform that reconstructs real workflows, reveals hidden human work, calculates AI Tax, and uses IBM Granite to design safer human-AI workflows before deployment.',
+    points: [
+      'Reconstructs actual workflows from structured event logs and detects hidden work like follow-ups, rework, exception handling, escalation, and manual reconciliation.',
+      'Calculates deterministic metrics including gross savings, five AI-overhead categories, AI Tax, net savings, burden concentration, automation readiness, and skill-loss risk.',
+      'Generates grounded recommendations, guardrails, approval thresholds, exception routing, and manual fallback procedures using IBM Granite through watsonx.ai.',
+      'Includes PII redaction, structured-output validation, cached fallback behavior, provider-status monitoring, downloadable JSON reports, and a 60-test backend suite.',
+    ],
+    tags: [
+      'Python',
+      'FastAPI',
+      'React',
+      'TypeScript',
+      'Vite',
+      'Pydantic',
+      'IBM watsonx.ai',
+      'IBM Granite',
+      'REST APIs',
+      'pytest',
+      'Docker',
+      'Render',
+    ],
+    accent: 'from-slate-300 to-cyan-400',
+    featured: true,
+    github: 'https://github.com/unity-darshthakkar/ShadowOps',
+  },
+  {
     name: 'Voix',
     subtitle: 'AI Voice Copilot for Windows',
     award: 'CalHacks 12.0',
@@ -93,6 +124,7 @@ export const projects = [
     tags: ['Faster-Whisper', 'Groq', 'Claude', 'COM Automation', 'asyncio'],
     accent: 'from-cyan-400 to-blue-500',
     featured: true,
+    github: 'https://github.com/unity-darshthakkar/Voix',
   },
   {
     name: 'YouTube Gesture Remote',
@@ -107,6 +139,7 @@ export const projects = [
     tags: ['OpenCV', 'MediaPipe', 'Python'],
     accent: 'from-violet-400 to-fuchsia-500',
     featured: true,
+    github: null,
   },
   {
     name: 'RL Agent',
@@ -117,6 +150,7 @@ export const projects = [
     points: [],
     tags: ['Python', 'RL', 'NumPy'],
     accent: 'from-emerald-400 to-teal-500',
+    github: null,
   },
   {
     name: 'Climate Trend Prediction',
@@ -127,6 +161,7 @@ export const projects = [
     points: [],
     tags: ['Python', 'Pandas', 'scikit-learn'],
     accent: 'from-amber-400 to-orange-500',
+    github: null,
   },
   {
     name: 'LeNet-5 CNN',
@@ -137,25 +172,50 @@ export const projects = [
     points: [],
     tags: ['PyTorch', 'CNN', 'CIFAR-100'],
     accent: 'from-rose-400 to-pink-500',
+    github: null,
   },
 ]
 
 export const skills = [
   {
-    group: 'Languages',
-    items: ['Python', 'C++', 'Java', 'JavaScript', 'SQL', 'R', 'C'],
+    group: 'Programming Languages',
+    items: ['Python', 'C++', 'Java', 'JavaScript', 'TypeScript', 'SQL', 'R', 'C'],
   },
   {
-    group: 'ML / AI',
+    group: 'AI/ML',
     items: ['PyTorch', 'scikit-learn', 'OpenCV', 'MediaPipe', 'NLP', 'CNNs', 'Reinforcement Learning'],
   },
   {
-    group: 'LLMs / RAG',
-    items: ['llama.cpp', 'GGUF', 'Embeddings', 'BM25', 'Tesseract OCR', 'RAG Architectures'],
+    group: 'LLM Systems',
+    items: [
+      'IBM Granite',
+      'watsonx.ai',
+      'llama.cpp',
+      'RAG',
+      'embeddings',
+      'BM25',
+      'GGUF',
+      'structured outputs',
+      'prompt engineering',
+      'Tesseract OCR',
+    ],
   },
   {
-    group: 'Systems / Web',
-    items: ['React', 'Flask', 'Qt/QML', 'REST APIs', 'PostgreSQL', 'SQLite', 'Docker', 'Git', 'asyncio', 'FFmpeg'],
+    group: 'Web/Systems',
+    items: [
+      'React',
+      'FastAPI',
+      'Flask',
+      'Pydantic',
+      'REST APIs',
+      'Vite',
+      'PostgreSQL',
+      'SQLite',
+    ],
+  },
+  {
+    group: 'Tools/Deployment',
+    items: ['pytest', 'CMake', 'FFmpeg', 'Qt/QML', 'Docker', 'Render', 'Git'],
   },
 ]
 
