@@ -127,6 +127,20 @@ export const projects = [
     github: 'https://github.com/unity-darshthakkar/Voix',
   },
   {
+    name: 'Little Lemon Restaurant API',
+    subtitle: 'Meta Back-End Developer Capstone',
+    year: '2026',
+    blurb:
+      'A Django REST API with MySQL-backed models and endpoints for restaurant menu and table-booking operations.',
+    points: [
+      'Built a Django REST API with MySQL-backed models and endpoints for restaurant menu and table-booking operations.',
+      'Implemented user registration and authentication, secured API endpoints, and validated functionality with unit and API tests.',
+    ],
+    tags: ['Django', 'Django REST Framework', 'MySQL', 'REST APIs', 'pytest'],
+    accent: 'from-lime-300 to-emerald-500',
+    github: 'https://github.com/unity-darshthakkar/LittleLemon',
+  },
+  {
     name: 'YouTube Gesture Remote',
     subtitle: 'Computer Vision',
     year: '2024',
@@ -201,25 +215,33 @@ export const skills = [
     ],
   },
   {
-    group: 'Web/Systems',
+    group: 'Web/Backend',
     items: [
       'React',
+      'Django',
+      'Django REST Framework',
       'FastAPI',
       'Flask',
       'Pydantic',
       'REST APIs',
       'Vite',
+      'MySQL',
       'PostgreSQL',
       'SQLite',
     ],
   },
   {
     group: 'Tools/Deployment',
-    items: ['pytest', 'CMake', 'FFmpeg', 'Qt/QML', 'Docker', 'Render', 'Git'],
+    items: ['Docker', 'Render', 'Git', 'CMake', 'FFmpeg', 'pytest', 'Qt/QML'],
   },
 ]
 
 export const certifications = [
+  {
+    name: 'Meta Back-End Developer Professional Certificate',
+    issuer: 'Meta',
+    year: '2026',
+  },
   {
     name: 'Supervised Machine Learning: Regression and Classification',
     issuer: 'DeepLearning.AI · Stanford University',
