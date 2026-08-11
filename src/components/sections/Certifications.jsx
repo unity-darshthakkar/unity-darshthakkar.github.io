@@ -29,6 +29,16 @@ export default function Certifications() {
                 <p className="mt-1 text-sm text-muted">
                   {c.issuer} · {c.year}
                 </p>
+                {c.link && (
+                  <a
+                    href={c.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex text-sm text-accent transition-colors hover:text-fg"
+                  >
+                    View certificate
+                  </a>
+                )}
               </div>
             </div>
           ))}

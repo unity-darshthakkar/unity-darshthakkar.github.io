@@ -98,10 +98,7 @@ function MiniCard({ p }) {
             />
           </a>
         ) : (
-          <ArrowUpRight
-            size={18}
-            className="text-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-          />
+          <span />
         )}
       </div>
       <p className="mt-3 text-sm leading-relaxed text-muted">{p.blurb}</p>
@@ -123,7 +120,16 @@ function MiniCard({ p }) {
 }
 
 export default function Projects() {
-  const featured = projects.filter((p) => p.featured)
+  const featured = projects
+    .filter((p) => p.featured)
+    .sort((a, b) => {
+      const priority = {
+        ShadowOps: 0,
+        'Little Lemon Restaurant API': 1,
+        Voix: 2,
+      }
+      return (priority[a.name] ?? 99) - (priority[b.name] ?? 99)
+    })
   const rest = projects.filter((p) => !p.featured)
 
   return (

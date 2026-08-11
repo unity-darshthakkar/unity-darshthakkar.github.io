@@ -128,7 +128,7 @@ export const projects = [
   },
   {
     name: 'Little Lemon Restaurant API',
-    subtitle: 'Meta Back-End Developer Capstone',
+    award: 'Meta Back-End Developer Capstone',
     year: '2026',
     blurb:
       'A Django REST API with MySQL-backed models and endpoints for restaurant menu and table-booking operations.',
@@ -138,6 +138,7 @@ export const projects = [
     ],
     tags: ['Django', 'Django REST Framework', 'MySQL', 'REST APIs', 'pytest'],
     accent: 'from-lime-300 to-emerald-500',
+    featured: true,
     github: 'https://github.com/unity-darshthakkar/LittleLemon',
   },
   {
@@ -241,11 +242,13 @@ export const certifications = [
     name: 'Meta Back-End Developer Professional Certificate',
     issuer: 'Meta',
     year: '2026',
+    link: 'https://www.coursera.org/account/accomplishments/specialization/4Z5XWSNR0IQ5',
   },
   {
     name: 'Supervised Machine Learning: Regression and Classification',
     issuer: 'DeepLearning.AI · Stanford University',
     year: 'Feb 2025',
+    link: 'https://www.coursera.org/account/accomplishments/verify/EZ9V4JAUZ61N',
   },
 ]
 
