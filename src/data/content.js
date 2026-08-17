@@ -229,6 +229,10 @@ export const skills = [
     items: ['PyTorch', 'scikit-learn', 'OpenCV', 'MediaPipe', 'NLP', 'CNNs', 'Reinforcement Learning'],
   },
   {
+    group: 'Robotics/Autonomy',
+    items: ['ROS 2 Humble', 'YOLOv8', 'Nav2', 'LiDAR', 'Jetson Orin Nano', 'Arduino Nano', 'BNO055'],
+  },
+  {
     group: 'LLM Systems',
     items: [
       'IBM Granite',
