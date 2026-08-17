@@ -126,7 +126,8 @@ export default function Projects() {
       const priority = {
         ShadowOps: 0,
         'Little Lemon Restaurant API': 1,
-        Voix: 2,
+        'Adaptive Rover-Drone Autonomy': 2,
+        Voix: 3,
       }
       return (priority[a.name] ?? 99) - (priority[b.name] ?? 99)
     })
