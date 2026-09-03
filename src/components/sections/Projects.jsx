@@ -124,10 +124,11 @@ export default function Projects() {
     .filter((p) => p.featured)
     .sort((a, b) => {
       const priority = {
-        ShadowOps: 0,
-        'Little Lemon Restaurant API': 1,
-        'Adaptive Rover-Drone Autonomy': 2,
-        Voix: 3,
+        LunaYield: 0,
+        ShadowOps: 1,
+        'Little Lemon Restaurant API': 2,
+        'Adaptive Rover-Drone Autonomy': 3,
+        Voix: 4,
       }
       return (priority[a.name] ?? 99) - (priority[b.name] ?? 99)
     })
