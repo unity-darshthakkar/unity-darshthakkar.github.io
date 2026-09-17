@@ -41,7 +41,7 @@ export const experience = [
     role: 'Undergraduate Research Assistant',
     org: 'People and Robots Lab, UW–Madison',
     location: 'Madison, WI',
-    period: 'Feb 2026 — Present',
+    period: 'Feb 2026 — Jun 2026',
     current: true,
     points: [
       'Built a user-feedback canvas for a robot programming interface with a Flask backend, enabling real-time message transmission and status visualization.',
@@ -343,7 +343,7 @@ export const involvement = [
     role: 'Member',
     org: 'Wisconsin Robotics',
     detail: 'Battle-bot CAD (Onshape)',
-    period: 'Sept 2023 — Present',
+    period: 'Sept 2023 — Sept 2024',
   },
   {
     role: 'DoE Bronze',
