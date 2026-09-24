@@ -79,6 +79,33 @@ export const experience = [
 
 export const projects = [
   {
+    name: 'DebugHalo',
+    subtitle: 'Privacy-Preserving Browser Extension for Generative AI',
+    blurb:
+      'An open-source browser extension that helps prevent users from accidentally sharing sensitive information with generative AI platforms by detecting and sanitizing potentially private data before prompts are submitted.',
+    points: [
+      'Detects sensitive information in user prompts before submission to platforms including ChatGPT, Claude, and Gemini.',
+      'Uses a shared privacy-detection and sanitization engine to identify risky content while keeping platform-specific behavior separated through reusable adapters.',
+      'Implements platform-specific DOM integrations for real-time prompt protection without changing how users normally interact with supported AI tools.',
+      'Provides popup privacy counters and extension controls so users can see when sensitive information has been detected and sanitized.',
+      'Uses a modular architecture that makes it easier to add support for additional AI platforms without rewriting the core privacy logic.',
+      'Validated with 340+ automated tests covering core detection, sanitization, platform adapters, and extension behavior.',
+    ],
+    tags: [
+      'TypeScript',
+      'JavaScript',
+      'Node.js',
+      'Chrome Extension APIs',
+      'HTML/CSS',
+      'Vitest',
+      'GitHub Actions',
+      'npm',
+    ],
+    accent: 'from-emerald-300 to-cyan-400',
+    featured: true,
+    github: 'https://github.com/unity-darshthakkar/DebugHalo',
+  },
+  {
     name: 'LunaYield',
     subtitle: 'AI-Assisted Lunar Mission Planning & Safety Platform',
     award: 'IBM August AI Builders Challenge 2026',
@@ -114,7 +141,7 @@ export const projects = [
     ],
     accent: 'from-indigo-300 to-cyan-400',
     featured: true,
-    github: null,
+    github: 'https://github.com/unity-darshthakkar/LunaYield',
   },
   {
     name: 'ShadowOps',
