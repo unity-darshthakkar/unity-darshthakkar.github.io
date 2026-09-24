@@ -298,7 +298,7 @@ export const skills = [
     items: ['ROS 2 Humble', 'YOLOv8', 'Nav2', 'LiDAR', 'Jetson Orin Nano', 'Arduino Nano', 'BNO055'],
   },
   {
-    group: 'LLM Systems',
+    group: 'LLM/AI Systems',
     items: [
       'IBM Granite',
       'watsonx.ai',
@@ -313,7 +313,7 @@ export const skills = [
     ],
   },
   {
-    group: 'Web/Backend',
+    group: 'Frameworks & Backend',
     items: [
       'React',
       'FastAPI',
@@ -322,19 +322,34 @@ export const skills = [
       'Django REST Framework',
       'REST APIs',
       'WebSockets',
+      'Node.js',
       'Pydantic',
       'SQLModel',
       'TanStack Query',
       'Zustand',
       'Vite',
-      'PostgreSQL',
-      'MySQL',
-      'SQLite',
     ],
   },
   {
-    group: 'Tools/Deployment',
-    items: ['Docker', 'Render', 'Git', 'pytest', 'Playwright', 'CMake', 'FFmpeg', 'Qt/QML'],
+    group: 'Databases',
+    items: ['PostgreSQL', 'MySQL', 'SQLite'],
+  },
+  {
+    group: 'Developer Tools',
+    items: [
+      'Git',
+      'Docker',
+      'ROS 2',
+      'CMake',
+      'pytest',
+      'Qt/QML',
+      'FFmpeg',
+      'Chrome Extension APIs',
+      'Vitest',
+      'GitHub Actions',
+      'Render',
+      'Playwright',
+    ],
   },
 ]
 
