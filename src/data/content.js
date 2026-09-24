@@ -81,6 +81,7 @@ export const projects = [
   {
     name: 'DebugHalo',
     subtitle: 'Privacy-Preserving Browser Extension for Generative AI',
+    year: '2026',
     blurb:
       'An open-source browser extension that helps prevent users from accidentally sharing sensitive information with generative AI platforms by detecting and sanitizing potentially private data before prompts are submitted.',
     points: [
