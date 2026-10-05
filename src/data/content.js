@@ -79,6 +79,37 @@ export const experience = [
 
 export const projects = [
   {
+    name: 'ShipPilot',
+    subtitle: 'AI-Powered Go-to-Market Planning Platform',
+    year: '2026',
+    blurb:
+      'A full-stack AI-powered go-to-market workspace that helps developers turn finished software projects into launch-ready plans by generating grounded positioning and launch assets, organizing experiments, and tracking launch readiness from persisted project data.',
+    points: [
+      'Lets users create structured project briefs covering the target audience, customer problem, product positioning, and launch goals, which become the source of truth for downstream GTM planning.',
+      'Uses managed AI to generate structured positioning and launch assets from saved project context while validating model output before it is persisted.',
+      'Supports creation and tracking of GTM experiments with hypotheses, channels, messaging, success metrics, targets, results, and recorded learnings.',
+      'Calculates launch readiness from persisted project briefs, launch kits, and experiment state rather than relying on synthetic or manually entered readiness scores.',
+      'Implements authenticated private workspaces with server-enforced record ownership, project-level authorization checks, and protected server actions for AI generation and data mutations.',
+      'Uses synchronized persistent records so projects, launch kits, and experiments remain consistent across navigation and page refreshes.',
+      'Includes safeguards against unsupported AI-generated claims by treating saved project data as the factual source of truth and validating structured generation before overwriting existing content.',
+      'Validated with automated unit and end-to-end testing covering ownership isolation, AI output validation, project persistence, launch-kit workflows, experiments, navigation guards, deletion behavior, and authentication.',
+    ],
+    tags: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Hono',
+      'Cloudflare Workers',
+      'DeepSpace',
+      'DeepSpace AI',
+      'Vitest',
+      'Playwright',
+    ],
+    accent: 'from-sky-300 to-indigo-400',
+    featured: true,
+    github: null,
+  },
+  {
     name: 'DebugHalo',
     subtitle: 'Privacy-Preserving Browser Extension for Generative AI',
     year: '2026',

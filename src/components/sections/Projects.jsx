@@ -124,6 +124,7 @@ export default function Projects() {
     .filter((p) => p.featured)
     .sort((a, b) => {
       const priority = {
+        ShipPilot: -2,
         DebugHalo: -1,
         LunaYield: 0,
         ShadowOps: 1,
