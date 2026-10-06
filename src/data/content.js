@@ -107,7 +107,7 @@ export const projects = [
     ],
     accent: 'from-sky-300 to-indigo-400',
     featured: true,
-    github: null,
+    github: 'https://github.com/unity-darshthakkar/ShipPilot',
   },
   {
     name: 'DebugHalo',
